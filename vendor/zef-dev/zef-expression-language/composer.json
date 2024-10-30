@@ -1,0 +1,37 @@
+{
+	"name" : "zef-dev/zef-expression-language",
+    "type": "library",
+	"description" : "A JUEL like extension for Symfony Expression Language",
+    "homepage": "https://github.com/zef-dev/zef-expression-language",
+    "version": "1.3.2",
+	"keywords" : [
+		"symfony", "expression-language"
+	],
+	"license" : "MIT",
+	"require" : {
+		"php" : "^7.2.5",
+        "psr/cache" : "^1.0.1",
+        "symfony/expression-language" : "^5"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "^8.0",
+		"friendsofphp/php-cs-fixer" : "^2.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Zef\\Zel\\" : "src/Zef/Zel"
+		}
+	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"Zef\\Zel\\" : "tests"
+		}
+	},
+	"config" : {
+		"platform" : {
+			"php" : "7.2.5"
+		},
+		"sort-packages" : true
+	},
+	"minimum-stability" : "stable"
+}

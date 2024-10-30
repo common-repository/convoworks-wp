@@ -1,0 +1,9 @@
+{
+    "namespace": "convo-wp-core",
+    "author": "ZEF Development",
+    "email": "tihomir@convoworks.com",
+    "source_for": [
+        "functions", "intents", "entities", "templates"
+    ],
+    "description": "Core WordPress components and WP functions (WP_Loop, WP_Query, WP media library)"
+}

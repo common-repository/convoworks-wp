@@ -1,0 +1,115 @@
+{
+    "template_id": "api-builder-project",
+    "name": "API Builder Project",
+    "description": "Define REST routes and handle them through Convoworks",
+    "service": {
+        "convo_service_version": 40,
+        "packages": [
+            "convo-core",
+            "convo-api-builder"
+        ],
+        "contexts": [],
+        "variables": [],
+        "preview_variables": [],
+        "entities": [],
+        "intents": [],
+        "blocks": [
+            {
+                "class": "\\Convo\\Pckg\\Core\\Elements\\SpecialRoleProcessorBlock",
+                "namespace": "convo-core",
+                "properties": {
+                    "block_id": "Api_Handler",
+                    "name": "Api Handler",
+                    "role": "api-handler",
+                    "processors": [
+                        {
+                            "class": "\\Convo\\Pckg\\Core\\Processors\\SimpleProcessor",
+                            "namespace": "convo-core",
+                            "properties": {
+                                "name": "Empty route",
+                                "ok": [
+                                    {
+                                        "class": "\\Convo\\Wp\\Pckg\\ApiBuilder\\ApiResponseElement",
+                                        "namespace": "convo-api-builder",
+                                        "properties": {
+                                            "status": 200,
+                                            "headers": {
+                                                "Content-Type": "application\/json"
+                                            },
+                                            "body": "{\"message\":\"Hello!\"}",
+                                            "_component_id": "xghsykp8-cw66-jxwb-snys-7myopxk4slyr"
+                                        }
+                                    }
+                                ],
+                                "request_filters": [
+                                    {
+                                        "class": "\\Convo\\Wp\\Pckg\\ApiBuilder\\ApiRouteFilter",
+                                        "namespace": "convo-api-builder",
+                                        "properties": {
+                                            "method": "GET",
+                                            "_component_id": "cmhcjdjy-v02l-tfbf-ajzn-djjfacsrusud"
+                                        }
+                                    }
+                                ],
+                                "_component_id": "rzr8tpl3-nfzg-jitv-es8k-qgto71wj79ix"
+                            }
+                        }
+                    ],
+                    "_component_id": "wzcyxxpo-2psg-zfzf-4qgy-narzjqo8dvln",
+                    "failback": [
+                        {
+                            "class": "\\Convo\\Wp\\Pckg\\ApiBuilder\\ApiResponseElement",
+                            "namespace": "convo-api-builder",
+                            "properties": {
+                                "status": 404,
+                                "headers": {
+                                    "Content-Type": "application\/json"
+                                },
+                                "body": "{\"message\":\"Requested resource was not found\"}",
+                                "_component_id": "8xpaitbz-gkp9-b1el-thvb-giaeamxgk9dq"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "class": "\\Convo\\Pckg\\Core\\Elements\\ConversationBlock",
+                "namespace": "convo-core",
+                "properties": {
+                    "role": "error_handler",
+                    "block_id": "Error_handler",
+                    "name": "Error handler",
+                    "pre_dispatch": [],
+                    "elements": [
+                        {
+                            "class": "\\Convo\\Pckg\\Core\\Elements\\LogElement",
+                            "namespace": "convo-core",
+                            "properties": {
+                                "log_message": "${error.getMessage()}",
+                                "_component_id": "pqamtg9p-fdnj-tvdq-1ckm-3ynp5zznvg2n"
+                            }
+                        },
+                        {
+                            "class": "\\Convo\\Wp\\Pckg\\ApiBuilder\\ApiResponseElement",
+                            "namespace": "convo-api-builder",
+                            "properties": {
+                                "status": 500,
+                                "headers": {
+                                    "Content-Type": "application\/json"
+                                },
+                                "body": "{\"message\": \"Unexpected error\"}",
+                                "_component_id": "lhcjcvpu-kcdw-wce2-4qol-ptl9nm7vwkto"
+                            }
+                        }
+                    ],
+                    "processors": [],
+                    "fallback": [],
+                    "_component_id": "701jr3fq-gior-sdop-w9or-cdgglgnvp1k8"
+                }
+            }
+        ],
+        "fragments": [],
+        "properties": [],
+        "configurations": []
+    }
+}
